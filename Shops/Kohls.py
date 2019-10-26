@@ -1,7 +1,7 @@
 import bs4
 from selenium.webdriver.common.by import By
 
-from Helper import get_webdriver, waitForLoad
+from Utilities.Helper import get_webdriver, waitForLoad
 
 
 def search_kohls(*keywords):
@@ -18,7 +18,6 @@ def search_kohls(*keywords):
     wd.get(URL)
     waitForLoad(URL, wd, "products_matrix", By.CLASS_NAME)
     web_page = bs4.BeautifulSoup(wd.page_source, "lxml")
-    print(web_page.head.title.text)
     articles = web_page.find_all("li", class_="products_grid")
     wd.close()
     for item in articles:

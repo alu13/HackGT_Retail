@@ -1,6 +1,6 @@
 import bs4
 
-from Helper import get_webdriver
+from Utilities.Helper import get_webdriver
 
 def search_dillards(*keywords):
     """

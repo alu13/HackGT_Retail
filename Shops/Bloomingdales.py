@@ -3,7 +3,7 @@ import re
 import bs4
 from selenium.webdriver.common.by import By
 
-from Helper import get_webdriver, waitForLoad
+from Utilities.Helper import get_webdriver, waitForLoad
 
 
 def search_bloomingdales(*keywords):

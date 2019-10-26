@@ -1,6 +1,6 @@
 
 import bs4
-from Helper import get_webdriver, waitForLoad
+from Utilities.Helper import get_webdriver, waitForLoad
 
 
 def search_nordstrom(*keywords):
@@ -17,7 +17,6 @@ def search_nordstrom(*keywords):
     wd.get(URL)
     waitForLoad(URL, wd,  "article")
     web_page = bs4.BeautifulSoup(wd.page_source, "lxml")
-    print(web_page.head.title.text)
     articles = web_page.find_all("article")
     wd.close()
     for item in articles:
