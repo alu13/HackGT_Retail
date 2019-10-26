@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
@@ -15,7 +16,11 @@ def get_webdriver() -> webdriver:
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--enable-javascript")
     options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36")
-    wd = webdriver.Chrome("./Utilities/chromedriver", options=options)
+    try:
+        wd = webdriver.Chrome("chromedriver", options=options)
+    except:
+        wd = webdriver.Chrome(os.getcwd() + "/Utilities/chromedriver", options=options)
+
     return wd
 
 def waitForLoad(url, driver, locator, BySelector = By.TAG_NAME, timeout = 0):
