@@ -18,4 +18,5 @@ def search_bloomingdales(*keywords):
     wd.get(URL)
     web_page = bs4.BeautifulSoup(wd.page_source, "lxml")
     descriptions = web_page.find_all("div", class_="productDescription")
+    wd.close()
     return descriptions
