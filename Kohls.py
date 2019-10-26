@@ -1,6 +1,7 @@
 import bs4
+from selenium.webdriver.common.by import By
 
-from Helper import get_webdriver
+from Helper import get_webdriver, waitForLoad
 
 
 def search_kohls(*keywords):
@@ -12,10 +13,22 @@ def search_kohls(*keywords):
     URL = "https://www.kohls.com/search.jsp?submit-search=web-regular&search="
     KEYWORD_STRING = "+".join(keywords)
     URL += KEYWORD_STRING
+    dataList = []
     wd = get_webdriver()
     wd.get(URL)
+    waitForLoad(URL, wd, "products_matrix", By.CLASS_NAME)
     web_page = bs4.BeautifulSoup(wd.page_source, "lxml")
     print(web_page.head.title.text)
-    articles = web_page.find_all("div",class_="products_matrix")
+    articles = web_page.find_all("li", class_="products_grid")
     wd.close()
-    return articles[0].find_all("li")
+    for item in articles:
+        data = {}
+        try:
+            data["name"] = item.find_all("div", class_="prod_nameBlock")[0].text.strip()
+            data["price"] = item.find_all("p", class_="prod_price_amount")[0].text.strip()
+            data["image"] = item.find_all("img")[0]["data-herosrc"]
+            data["url"] = "https://kohls.com" + item.find_all("a")[0]["href"].replace(" ", "%20")
+        except:
+            continue
+        dataList.append(data)
+    return dataList
