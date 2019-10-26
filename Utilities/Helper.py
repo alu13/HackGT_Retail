@@ -16,8 +16,6 @@ def get_webdriver() -> webdriver:
     options.add_argument("--enable-javascript")
     options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36")
     wd = webdriver.Chrome("./Utilities/chromedriver", options=options)
-    timeout = 30
-    #wd.implicitly_wait(timeout)
     return wd
 
 def waitForLoad(url, driver, locator, BySelector = By.TAG_NAME, timeout = 0):

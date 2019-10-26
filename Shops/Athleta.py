@@ -16,7 +16,7 @@ def search_athleta(*keywords):
     dataList = []
     wd = get_webdriver()
     wd.get(URL)
-    waitForLoad(URL, wd, "product-card-grid__inner", By.CLASS_NAME)
+    waitForLoad(URL, wd, "product-card-grid__inner", By.CLASS_NAME, timeout=5)
     web_page = bs4.BeautifulSoup(wd.page_source, "lxml")
     articles = web_page.find_all("div", class_="product-card-grid__inner")
     wd.close()
