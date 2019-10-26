@@ -4,13 +4,13 @@ from selenium.webdriver.common.by import By
 from Utilities.Helper import get_webdriver, waitForLoad
 
 
-def search_oldnavy(*keywords):
+def search_athleta(*keywords):
     """
     Searchs old navy by the passed keywords
     :param keywords: search terms
     :return: a list of bs4 objects representing the articles of clothing
     """
-    URL = "https://oldnavy.gap.com/browse/search.do?searchText="
+    URL = "https://athleta.gap.com/browse/search.do?searchText="
     KEYWORD_STRING = "%20".join(keywords)
     URL += KEYWORD_STRING
     dataList = []
