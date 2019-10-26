@@ -1,5 +1,7 @@
 import bs4
 import re
+from selenium.webdriver.common.by import By
+
 
 from Utilities.Helper import get_webdriver, waitForLoad
 
