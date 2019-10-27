@@ -34,3 +34,22 @@ def search_dillards(*keywords):
             continue
         dataList.append(data)
     return dataList
+
+article = "jeans"
+price = 50
+redjeans = search_dillards("red", "jeans")
+
+def sort(arrOfDics):
+    holder = arrOfDics
+    for i in holder:
+        total = 0
+        if article.lower() in i["name"].lower():
+            total += 100
+        total -= abs(float(i["price"])-price)
+        i["value"] = total
+    shitRank = sorted(holder, key = lambda i: i['value'], reverse=True)
+    for i in shitRank:
+        print(i["name"])
+        print(i["price"])
+        print(i["value"])
+sort(redjeans)
